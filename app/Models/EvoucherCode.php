@@ -15,4 +15,8 @@ class EvoucherCode extends Model
     public function brand() {
         return $this->belongsTo('App\Models\Brand');
     }
+
+    public function customer() {
+        return $this->belongsTo('App\Models\Customer');
+    }
 }

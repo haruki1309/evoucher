@@ -11,4 +11,8 @@ class Customer extends Model
     public function customerClassification() {
         return $this->belongsTo('App\Models\CustomerClassification');
     }
+
+    public function evoucherCodes() {
+        return $this->hasMany('App\Models\EvoucherCode');
+    }
 }

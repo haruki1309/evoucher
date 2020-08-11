@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Evoucher;
 use App\Models\EvoucherCode;
+use App\Models\Brand;
 use App\Models\Customer;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Redirect, Response;
 
@@ -255,9 +257,27 @@ class VoucherController extends Controller
     {
     }
 
-    public function verifyview()
+    public function verifyview($evoucherCode, $evoucher, $brand, $customer)
     {
-        return view('vouchers.verify');
+        return view('vouchers.verify', compact('evoucherCode', 'evoucher', 'brand', 'customer'));
+    }
+
+    public function verify(Request $request)
+    {        
+        $evoucherCode = new EvoucherCode();
+        $evoucher = new Evoucher();
+        $brand = new Brand();
+        $customer = new Customer();
+
+        if ($request->voucherCode && EvoucherCode::where('code', $request->voucherCode)->exists())
+        {
+            $evoucherCode = EvoucherCode::where('code', $request->voucherCode)->first();
+            $evoucher = $evoucherCode->evoucher()->where('id', $evoucherCode->evoucher_id)->first();
+            $brand = $evoucherCode->brand()->where('id', $evoucherCode->brand_id)->first();
+            $customer = $evoucherCode->customer()->where('id', $evoucherCode->customer_id)->first();
+        }
+
+        return $this->verifyview($evoucherCode, $evoucher, $brand, $customer);
     }
 
     public function createCode(Request $request)
