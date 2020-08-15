@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('login', 'Users\AuthController@loginView')->name('login.view');
 Route::post('login', 'Users\AuthController@authenticate')->name('login.authenticate');
+Route::get('register', 'Auth\RegisterController@registerView')->name('register.view');
+Route::post('register', 'Auth\RegisterController@validateBeforeInsert')->name('register.validateBeforeInsert');
 
 Route::middleware(['auth'])->group(function() {
     // User Routes Section

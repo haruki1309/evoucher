@@ -26,7 +26,7 @@
                         <a class="small" href="">Forgot Password?</a>
                     </div>
                     <div class="text-center">
-                        <a class="small" href="">Create an Account!</a>
+                        Chưa có tài khoản? <a class="small" href="./register">Đăng ký tài khoản mới</a>
                     </div>
                 </form>
             </div>

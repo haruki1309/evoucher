@@ -15,7 +15,20 @@ class User extends Authenticatable
     protected $table = 'user';
 
     protected $fillable = [
-        'username', 'password',
+        'username', 'password', 'first_name', 'last_name', 'email'
+    ];
+
+    protected $attributes = [
+        'is_admin' => 0,
+        'is_brand_owner' => 0,
+        'brand_id' => 2,
+        'avt_url' => '',
+        'is_activated' => 0,
+        'lang_key' => 'vi_VN',
+        'activation_key' => '',
+        'reset_key' => '',
+        'created_by' => 1,
+        'updated_by' => 1
     ];
 
     protected $hidden = [
